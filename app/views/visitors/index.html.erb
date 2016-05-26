@@ -1,0 +1,9 @@
+<h3 align="center">
+	<div id="popup" class="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+</h3>
+<% if  user_signed_in? %>
+	<li><%= link_to 'create Blog', new_user_registration_path, {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true, 'data-toggle' =>  "modal" }  %></li>
+<% else %>
+	<h1> SignIn Required</h1>
+<% end %>
+	

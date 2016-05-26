@@ -2,7 +2,36 @@
 	<div id="popup" class="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 </h3>
 <% if  user_signed_in? %>
-	<li><%= link_to 'create Blog', new_user_registration_path, {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true, 'data-toggle' =>  "modal" }  %></li>
+	<li><%= link_to 'create Blog', new_blog_path, {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true, 'data-toggle' =>  "modal" }  %></li>
+	<% unless @blog.blank? %>
+    <% @blog.each do |blog| %>
+      <div  style="border:1px solid black;">
+    		<header class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="post-heading">
+                            <h1><%= blog.title %></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <article>
+          <div class="container">
+            <div class="row">
+              <%= blog.body %>
+            </div>
+          </div>
+        </article>
+      </div> 
+      <p><span>
+      td><%= link_to 'Edit', edit_blog_path(blog), {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true, 'data-toggle' =>  "modal" } %></td>
+      </span></p> 
+    <%end%>
+	<% end %>
+
 <% else %>
 	<h1> SignIn Required</h1>
 <% end %>

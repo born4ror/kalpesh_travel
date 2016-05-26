@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>T color:</strong>
+  <%= @blog.t_color %>
+</p>
+
+<p>
+  <strong>T font:</strong>
+  <%= @blog.t_font %>
+</p>
+
+<p>
+  <strong>T font size:</strong>
+  <%= @blog.t_font_size %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @blog.body %>
+</p>
+
+<p>
+  <strong>B color:</strong>
+  <%= @blog.b_color %>
+</p>
+
+<p>
+  <strong>B font:</strong>
+  <%= @blog.b_font %>
+</p>
+
+<p>
+  <strong>B font size:</strong>
+  <%= @blog.b_font_size %>
+</p>
+
+<p>
+  <strong>Background color:</strong>
+  <%= @blog.background_color %>
+</p>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

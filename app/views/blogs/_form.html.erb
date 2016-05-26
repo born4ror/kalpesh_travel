@@ -1,0 +1,74 @@
+<div class = "model" tabindex="-1" role="dialog">
+  <div class="modal-dialog"> 
+    <div class="modal-content" style="width: 71%">
+      <div class="modal-header">
+        <h4 class="modal-title"> Share: </h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@blog) do |f| %>
+          <% if @blog.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+              <ul>
+                <% @blog.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <% unless params[:action] == "edit"%>
+            <div class="field">
+              <%= f.label :title %><br>
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :body %><br>
+              <%= f.text_field :body %>
+            </div>
+          <% else %>
+            <div class='col-md-6'>
+              <div class="field">
+                <%= f.label :title %><br>
+                <%= f.text_field :title %>
+              </div>
+              <div class="field">
+                <%= f.label :t_color %><br>
+                <%= f.text_field :t_color %>
+              </div>
+              <div class="field">
+                <%= f.label :t_font %><br>
+                <%= f.text_field :t_font %>
+              </div>
+              <div class="field">
+                <%= f.label :t_font_size %><br>
+                <%= f.text_field :t_font_size %>
+              </div>
+            </div>
+            <div class='col-md-6'>
+              <div class="field">
+                <%= f.label :body %><br>
+                <%= f.text_field :body %>
+              </div>
+              <div class="field">
+              <%= f.label :b_color %><br>
+              <%= f.text_field :b_color %>
+              </div>
+              <div class="field">
+                <%= f.label :b_font %><br>
+                <%= f.text_field :b_font %>
+              </div>
+              <div class="field">
+                <%= f.label :b_font_size %><br>
+                <%= f.text_field :b_font_size %>
+              </div>
+            </div>
+          <% end %>
+          
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

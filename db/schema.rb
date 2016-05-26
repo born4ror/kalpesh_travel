@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526203310) do
+ActiveRecord::Schema.define(version: 20160526203311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "t_color"
+    t.string   "t_font"
+    t.string   "t_font_size"
+    t.string   "body"
+    t.string   "b_color"
+    t.string   "b_font"
+    t.string   "b_font_size"
+    t.string   "background_color"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "cssdetails", force: :cascade do |t|
     t.string   "color"

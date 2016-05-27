@@ -13,7 +13,7 @@ class BlogsController < ApplicationController
   end
 
   def new
-    @blog = Blog.new
+    @blog = current_user.blogs.new
     respond_with(@blog)
   end
 
@@ -21,14 +21,24 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
-    @blog.save
-    redirect_to root_url
+    respond_to do |format|
+      @blog = current_user.blogs.new(blog_params)
+      if @blog.save
+        format.js { render :template => "visitors/index.html.erb", :layout => false }
+      else
+        format.js { render :template => "blogs/new.js.erb", :layout => false }
+      end
+    end
   end
 
   def update
-    @blog.update(blog_params)
-    respond_with(@blog)
+    respond_to do |format|
+      if @blog.update(blog_params)
+        format.js { render :template => "visitors/index.html.erb", :layout => false }
+      else
+        format.js { render :template => "blogs/edit.js.erb", :layout => false }
+      end
+    end
   end
 
   def destroy

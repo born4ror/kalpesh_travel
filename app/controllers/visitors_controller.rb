@@ -1,5 +1,7 @@
 class VisitorsController < ApplicationController
 	def index
-		@blog = Blog.all
+		if  user_signed_in?
+			@blog = current_user.blogs.all
+		end
 	end
 end

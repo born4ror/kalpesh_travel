@@ -1,11 +1,11 @@
 <div class = "model" tabindex="-1" role="dialog">
   <div class="modal-dialog"> 
-    <div class="modal-content" style="width: 71%">
-      <div class="modal-header">
-        <h4 class="modal-title"> Share: </h4>
-      </div>
+    <div class="modal-content" style="width: 100%">
+      <!-- <div class="modal-header">
+        <h4 class="modal-title"> Styling: </h4>
+      </div> -->
       <div class="modal-body">
-        <%= form_for(@blog) do |f| %>
+        <%= form_for(@blog,  :remote => true  ) do |f| %>
           <% if @blog.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
@@ -16,57 +16,59 @@
               </ul>
             </div>
           <% end %>
-          <% unless params[:action] == "edit"%>
+          <% if params[:action] == "new" || params[:action] ==  "create"%>
             <div class="field">
               <%= f.label :title %><br>
               <%= f.text_field :title %>
             </div>
             <div class="field">
               <%= f.label :body %><br>
-              <%= f.text_field :body %>
+              <%= f.text_area :body %>
+            </div>
+            <div class="actions">
+              <%= f.submit 'Create' %>
+            </div>
+          <% elsif params[:task] == "Edit" || params[:action] ==  "update" %>
+            <div class="field">
+              <%= f.label :title %><br>
+              <%= f.text_field :title %>
+            </div>
+            <div class="actions">
+              <%= f.submit 'Edit' %>
             </div>
           <% else %>
-            <div class='col-md-6'>
-              <div class="field">
-                <%= f.label :title %><br>
-                <%= f.text_field :title %>
-              </div>
+            <div class='col-md-6' style="border:1px solid black;">
               <div class="field">
                 <%= f.label :t_color %><br>
-                <%= f.text_field :t_color %>
+                <%= f.select(:t_color, Blog::COLOR ) %>
               </div>
               <div class="field">
                 <%= f.label :t_font %><br>
-                <%= f.text_field :t_font %>
+                <%= f.select(:t_font, Blog::FONT ) %>
               </div>
               <div class="field">
                 <%= f.label :t_font_size %><br>
-                <%= f.text_field :t_font_size %>
+                <%= f.select :t_font_size, options_for_select(1..1000)%>
               </div>
             </div>
-            <div class='col-md-6'>
-              <div class="field">
-                <%= f.label :body %><br>
-                <%= f.text_field :body %>
-              </div>
+            <div class='col-md-6' style="border:1px solid black;" >
               <div class="field">
               <%= f.label :b_color %><br>
-              <%= f.text_field :b_color %>
+              <%= f.select(:b_color, Blog::COLOR ) %>  
               </div>
-              <div class="field">
+              <div class="field" style="width: 50%">
                 <%= f.label :b_font %><br>
-                <%= f.text_field :b_font %>
+                <%= f.select(:b_font, Blog::FONT , :style=>"width: 50%" )%>
               </div>
-              <div class="field">
+              <div class="field" >
                 <%= f.label :b_font_size %><br>
-                <%= f.text_field :b_font_size %>
+                <%= f.select :b_font_size, options_for_select(1..1000) %>
               </div>
             </div>
+            <div class="actions">
+              <%= f.submit 'Apply' %>
+            </div>
           <% end %>
-          
-          <div class="actions">
-            <%= f.submit %>
-          </div>
         <% end %>
       </div>
     </div>

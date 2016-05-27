@@ -11,13 +11,7 @@ class UsersController < ApplicationController
       redirect_to :back, :alert => "Access denied."
     end
   end
-
-  # def profile
-  #   unless @user == current_user
-  #     redirect_to :back, :alert => "Access denied."
-  #   end
-  # end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

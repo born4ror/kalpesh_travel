@@ -5,22 +5,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def new
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    super
   end
 
 
   def create
-    binding.pry
-    @user = User.new sign_up_params
-    if @user.save
-      flash[:notice] = "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."
-      redirect_to root_url
-    else
-      flash[:notice] = "invalid email address"
-      render :action => :new
+    respond_to do |format|
+      @user = User.new sign_up_params
+      if @user.save
+        format.js { render :template => "devise/registrations/new.js.erb", :layout => false }
+      else
+        format.js { render :template => "devise/registrations/new.js.erb", :layout => false }
+      end
     end
   end
 

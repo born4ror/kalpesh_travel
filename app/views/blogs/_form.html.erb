@@ -37,7 +37,7 @@
               <%= f.submit 'Edit' %>
             </div>
           <% else %>
-            <div class='col-md-6' style="border:1px solid black;">
+            <div >
               <div class="field">
                 <%= f.label :t_color %><br>
                 <%= f.select(:t_color, Blog::COLOR ) %>
@@ -50,11 +50,9 @@
                 <%= f.label :t_font_size %><br>
                 <%= f.select :t_font_size, options_for_select(1..1000)%>
               </div>
-            </div>
-            <div class='col-md-6' style="border:1px solid black;" >
               <div class="field">
-              <%= f.label :b_color %><br>
-              <%= f.select(:b_color, Blog::COLOR ) %>  
+                <%= f.label :b_color %><br>
+                <%= f.select(:b_color, Blog::COLOR ) %>  
               </div>
               <div class="field" style="width: 50%">
                 <%= f.label :b_font %><br>
@@ -64,10 +62,11 @@
                 <%= f.label :b_font_size %><br>
                 <%= f.select :b_font_size, options_for_select(1..1000) %>
               </div>
-            </div>
             <div class="actions">
               <%= f.submit 'Apply' %>
             </div>
+          </div>
+
           <% end %>
         <% end %>
       </div>

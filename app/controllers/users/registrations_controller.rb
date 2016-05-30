@@ -10,13 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    respond_to do |format|
-      @user = User.new sign_up_params
-      if @user.save
-        format.js { render :template => "devise/registrations/new.js.erb", :layout => false }
-      else
-        format.js { render :template => "devise/registrations/new.js.erb", :layout => false }
-      end
+     build_resource(sign_up_params)
+    if resource.save
+      sign_up(resource_name, resource)
+      redirect_to root_url
+    else
+      flash[:notice] = "Registration fail,Please insert correct info."
+      redirect_to root_url
     end
   end
 

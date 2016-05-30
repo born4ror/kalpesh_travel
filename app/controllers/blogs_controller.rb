@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
     respond_to do |format|
       @blog = current_user.blogs.new(blog_params)
       if @blog.save
-        format.js { render :template => "visitors/index.html.erb", :layout => false }
+        format.js { render :template => "visitors/index.html.erb", :layout => false, :locals => {:@blog =>current_user.blogs.all } }
       else
         format.js { render :template => "blogs/new.js.erb", :layout => false }
       end
@@ -34,7 +34,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
-        format.js { render :template => "visitors/index.html.erb", :layout => false }
+        format.js { render :template => "visitors/index.html.erb", :layout => false, :locals => {:@blog =>current_user.blogs.all } }
       else
         format.js { render :template => "blogs/edit.js.erb", :layout => false }
       end
